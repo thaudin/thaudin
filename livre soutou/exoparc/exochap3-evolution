@@ -1,0 +1,34 @@
+------------ EVOLUTION---------
+
+ALTER TABLE segment ADD nbsalle NUMBER(2);
+ALTER TABLE segment ADD nbposte NUMBER(2);
+ALTER TABLE logiciel ADD nbinstall NUMBER(2);
+ALTER TABLE poste ADD nblog NUMBER(2);
+
+
+---------CHANGER LA TAILLE DE COLONNE-----
+ALTER TABLE salle MODIFY nomsalle VARCHAR2(30);
+ALTER TABLE segment MODIFY nomsegment VARCHAR2(15);
+/*
+
+ALTER TABLE segment MODIFY nomsegment VARCHAR2(15)
+                           *
+ERROR at line 11:
+ORA-01441: cannot decrease column length because some value is too big
+*/
+ALTER TABLE segment MODIFY nomsegment VARCHAR2(14);
+/*
+
+ALTER TABLE segment MODIFY nomsegment VARCHAR2(14)
+                           *
+ERROR at line 12:
+ORA-01441: cannot decrease column length because some value is too big
+*/
+DESC salle;
+DESC segment;
+SELECT*FROM salle;
+SELECT*FROM segment;
+
+
+
+

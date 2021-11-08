@@ -1,0 +1,59 @@
+--------AJOUT DE CONTRAINTE------
+
+ALTER TABLE poste ADD CONSTRAINT fk_poste_indip_seg FOREIGN KEY (indip) REFERENCES segment(indip);
+ALTER TABLE poste ADD CONSTRAINT fk_poste_nsalle_salle FOREIGN KEY (nsalle) REFERENCES salle(nsalle);
+ALTER TABLE poste ADD CONSTRAINT fk_poste_typeposte_types FOREIGN KEY (typeposte) REFERENCES types(typelp);
+ALTER TABLE installer ADD CONSTRAINT fk_instal_nlog_log FOREIGN KEY (nlog) REFERENCES logiciel(nlog);
+ALTER TABLE installer ADD CONSTRAINT fk_instal_nposte_npost FOREIGN KEY (nposte) REFERENCES poste(nposte);
+
+------traitements des rejets-------
+CREATE TABLE rejets(
+    ligne ROWID,
+    proprietaire VARCHAR2(10),
+    nomtable VARCHAR2(10),
+    contrainte VARCHAR2(10)
+);
+
+ALTER TABLE rejets MODIFY proprietaire VARCHAR2(30);
+ALTER TABLE rejets MODIFY nomtable VARCHAR2(30);
+ALTER TABLE rejets MODIFY contrainte VARCHAR2(30);
+
+------nouvelle contrainte-------
+ALTER TABLE salle ADD CONSTRAINT
+    fk_salle_indip_segment foreign key (indip) REFERENCES segment(indip) EXCEPTIONS INTO rejets
+;
+ALTER TABLE logiciel ADD (
+    CONSTRAINT fk_log_typelog_types foreign key (typelog) REFERENCES types(typelp) EXCEPTIONS INTO rejets
+);
+
+-----récuparation des rejets-------
+SELECT * FROM rejets;
+--affichage des lignes rejetées
+SELECT ROWID,s. * from salle s
+    WHERE ROWID IN (SELECT ligne from rejets)
+;
+SELECT ROWID,l. * from logiciel L 
+    where ROWID IN (SELECT ligne FROM rejets)
+;
+---- résolution des rejets-----
+
+--suppression des lignes non compatibles
+DELETE FROM salle WHERE  indip = '130.120.83';
+INSERT INTO types VALUES(
+    'beOS',
+    'système Be'
+);
+DELETE FROM rejets;
+--ajout des contraintes
+ALTER TABLE salle ADD(
+    constraint fk_salle_indip_segment FOREIGN KEY (indip) REFERENCES segment(indip) EXCEPTIONS INTO rejets
+);
+ALTER TABLE logiciel ADD(
+    CONSTRAINT fk_log_typelog_types FOREIGN KEY (typelog) REFERENCES types(typelp) EXCEPTIONS INTO rejets
+);
+
+---fk_log_typelog_types récupération
+UPDATE types SET typelp='BeOS'
+    WHERE typelp='beOS'
+;
+SELECT *FROM rejets;

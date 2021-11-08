@@ -1,0 +1,342 @@
+------ exo chapitre 2 ----
+
+INSERT INTO "SEGMENT" (INDIP,NOMSEGMENT,ETAGE)
+VALUES(
+    '130.120.80',
+    'Brin RDC',
+    NULL
+);
+INSERT INTO "SEGMENT"(
+    INDIP,
+    NOMSEGMENT,
+    ETAGE
+)VALUES(
+    '130.120.81',
+    'Brin 1er étage',
+    NULL
+);
+INSERT INTO "SEGMENT"(
+    INDIP,
+    NOMSEGMENT,
+    ETAGE
+)VALUES(
+    '130.120.82',
+    'Brin 2éme étage',
+    NULL
+);
+
+INSERT INTO SALLE VALUES(
+    's01','Salle 1',3,'130.120.80'
+);
+INSERT INTO SALLE VALUES('s02','Salle 2',2,'130.120.80');
+INSERT INTO SALLE VALUES('s03','Salle 3',2,'130.120.80');
+INSERT INTO SALLE VALUES('s11','Salle 11',2,'130.120.81');
+INSERT INTO SALLE VALUES('s12','Salle 12',1,'130.120.81');
+INSERT INTO SALLE VALUES('s21','Salle 21',2,'130.120.82');
+INSERT INTO SALLE VALUES('s22','Salle 22',0,'130.120.83');
+INSERT INTO SALLE VALUES('s23','Salle 23',0,'130.120.83');
+
+alter TABLE POSTE MODIFY TYPEPOSTE VARCHAR2(5);
+
+INSERT INTO POSTE VALUES('p1','Poste 1','130.120.80','01','TX','s01');
+INSERT INTO POSTE VALUES('p2','Poste 2','130.120.80','02','UNIX','s01');
+INSERT INTO POSTE VALUES('p3','Poste 3','130.120.80','03','TX','s01');
+INSERT INTO POSTE VALUES('p4','Poste 4','130.120.80','04','PCWS','s02');
+INSERT INTO POSTE VALUES('p5','Poste 5','130.120.80','05','PCWS','s02');
+INSERT INTO POSTE VALUES('p6','Poste 6','130.120.80','06','UNIX','s03');
+INSERT INTO POSTE VALUES('p7','Poste 7','130.120.80','07','TX','s03');
+INSERT INTO POSTE VALUES('p8','Poste 8','130.120.81','01','UNIX','s11');
+INSERT INTO POSTE VALUES('p9','Poste 9','130.120.81','02','TX','s11');
+INSERT INTO POSTE VALUES('p10','Poste 10','130.120.81','03','UNIX','s12');
+INSERT INTO POSTE VALUES('p11','Poste 11','130.120.82','01','PCNT','s21');
+INSERT INTO POSTE VALUES('p12','Poste 12','130.120.82','02','PCWS','s21');
+
+-- Insert rows in a Table
+
+INSERT INTO LOGICIEL 
+(
+  NLOG,
+  NOMLOG,
+  DATEACH,
+  VERSION,
+  TYPELOG,
+  PRIX
+)
+VALUES
+(
+  'log1',
+  'Oracle 6',
+  to_date('13/05/1995','dd/mm/yyyy'),
+  '6.2',
+  'UNIX',
+  3000
+);
+-- Insert rows in a Table
+
+INSERT INTO LOGICIEL 
+(
+  NLOG,
+  NOMLOG,
+  DATEACH,
+  VERSION,
+  TYPELOG,
+  PRIX
+)
+VALUES
+(
+  'log2',
+  'Oracle 8',
+  to_date('15/09/99','dd/mm/yy'),
+  '8i',
+  'UNIX',
+  5600
+);
+-- Insert rows in a Table
+
+INSERT INTO LOGICIEL 
+(
+  NLOG,
+  NOMLOG,
+  DATEACH,
+  VERSION,
+  TYPELOG,
+  PRIX
+)
+VALUES
+(
+  'log3',
+  'SQL Server',
+  to_date('12/04/98','dd/mm/yy'),
+  '7',
+  'PCNT',
+  2700  
+);
+-- Insert rows in a Table
+
+INSERT INTO LOGICIEL 
+(
+  NLOG,
+  NOMLOG,
+  DATEACH,
+  VERSION,
+  TYPELOG,
+  PRIX
+)
+VALUES
+(
+  'log4',
+  'Front Page',
+  to_date('03/06/97','dd/mm/yy'),
+  '5',
+  'PCWS',
+  500
+);
+-- Insert rows in a Table
+
+INSERT INTO LOGICIEL 
+(
+  NLOG,
+  NOMLOG,
+  DATEACH,
+  VERSION,
+  TYPELOG,
+  PRIX  
+)
+VALUES
+(
+  'log5',
+  'Windev',
+  to_date('12/05/97','DD/MM/YY'),
+  '5',
+  'PCWS',
+  750
+);
+-- Insert rows in a Table
+
+INSERT INTO LOGICIEL 
+(
+  NLOG,
+  NOMLOG,
+  DATEACH,
+  VERSION,
+  TYPELOG,
+  PRIX
+)
+VALUES
+(
+  'log6',
+  'SQL*Net',
+  NULL,
+  '2.0',
+  'UNIX',
+  500
+);
+-- Insert rows in a Table
+
+INSERT INTO LOGICIEL 
+(
+  NLOG,
+  NOMLOG,
+  DATEACH,
+  VERSION,
+  TYPELOG,
+  PRIX
+)
+VALUES
+(
+  'log7',
+  'I.I.S.',
+   to_date('12/04/02','DD/MM/YY'),
+   '2',
+   'PCNT',
+   810
+);
+-- Insert rows in a Table
+
+INSERT INTO LOGICIEL 
+(
+  NLOG,
+  NOMLOG,
+  DATEACH,
+  VERSION,
+  TYPELOG,
+  PRIX
+)
+VALUES
+(
+  'log8',
+  'DreamWeaver',
+  to_date('21/09/03','DD/MM/YY'),
+  '2.0',
+  'BeOS',
+  1400
+);
+
+INSERT INTO TYPES VALUES('TX','Terminal X-Window');
+INSERT INTO TYPES VALUES('UNIX','Système Unix');
+INSERT INTO TYPES VALUES('PCNT','PC Windows NT');
+INSERT INTO TYPES VALUES('PCWS','PC Windows');
+INSERT INTO TYPES VALUES('NC','Network Computer');
+
+--Create a new Sequence
+
+CREATE SEQUENCE SEQUENCEINS
+             START WITH 1 
+             INCREMENT BY 1
+             MAXVALUE 10000
+             NOCYCLE ---pour dire que une fois le maxvalue atteint on ne peut plus mettre de valeur 
+             CACHE 20;
+
+INSERT INTO INSTALLER(
+    NPOSTE,
+    NLOG,
+    NUMINS,
+    DATEINS,
+    DELAI
+)
+VALUES
+(
+    'p2',
+    'log1',
+    SEQUENCEINS.nextval,
+    to_date('15/05/03','DD/MM/YY'),
+    NULL
+);
+INSERT INTO INSTALLER VALUES(
+    'p2',
+    'log2',
+    SEQUENCEINS.nextval,
+    to_date('17/09/03','DD/MM/YY'),
+    NULL
+);
+INSERT INTO INSTALLER VALUES(
+    'p4',
+    'log5',
+    sequenceins.nextval,
+    NULL,
+    NULL
+);
+INSERT INTO INSTALLER VALUES(
+    'p6',
+    'log6',
+    sequenceins.nextval,
+    to_date('20/05/03','DD/MM/YY'),
+    NULL
+);
+INSERT INTO INSTALLER VALUES(
+    'p6',
+    'log1',
+    SEQUENCEINS.nextval,
+    to_date('20/05/03','DD/MM/YY'),
+    NULL
+);
+INSERT INTO INSTALLER VALUES(
+    'p8',
+    'log2',
+    sequenceins.nextval,
+    to_date('19/05/03','DD/MM/YY'),
+    NULL
+);
+INSERT INTO INSTALLER VALUES(
+    'p8',
+    'log6',
+    sequenceins.nextval,
+    to_date('20/05/03','DD/MM/YY'),
+    NULL
+);
+INSERT INTO INSTALLER VALUES(
+    'p11',
+    'log3',
+    sequenceins.nextval,
+    to_date('20/04/03','DD/MM/YY'),
+    NULL
+);
+INSERT INTO INSTALLER VALUES(
+    'p12',
+    'log4',
+    sequenceins.nextval,
+    to_date('20/04/03','DD/MM/YY'),
+    NULL
+);
+INSERT INTO INSTALLER VALUES(
+    'p11',
+    'log7',
+    sequenceins.nextval,
+    to_date('20/04/03','DD/MM/YY'),
+    NULL
+);
+INSERT INTO INSTALLER VALUES(
+    'p7',
+    'log7',
+    sequenceins.nextval,
+    to_date('01/04/02','DD/MM/YY'),
+    NULL
+);
+
+--------- MODIFICATION.SQL----------------
+
+UPDATE SEGMENT
+SET etage = 0 
+WHERE indip = '130.120.80'
+;
+UPDATE SEGMENT
+SET ETAGE = 1
+WHERE INDIP = '130.120.81'
+;
+UPDATE SEGMENT
+SET ETAGE = 2
+WHERE INDIP = '130.120.82'
+;
+
+UPDATE LOGICIEL
+SET PRIX = (PRIX*10/100)+PRIX
+WHERE TYPELOG = 'PCNT'
+;
+
+SELECT * FROM "SEGMENT";
+SELECT NLOG,TYPELOG,PRIX FROM LOGICIEL;
+
+------------------------------------------
+
+
+

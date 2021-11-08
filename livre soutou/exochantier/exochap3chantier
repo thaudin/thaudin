@@ -1,0 +1,59 @@
+ALTER TABLE vehicule ADD (
+    capacite NUMBER(10)
+);
+CREATE TABLE chantierinterdits(
+    n_chantier VARCHAR(10), 
+    type_vehicule VARCHAR(20),
+    CONSTRAINT pk_chaninter PRIMARY KEY(n_chantier,type_vehicule),
+    CONSTRAINT fk_chaninter_chantier FOREIGN KEY(n_chantier) REFERENCES chantier(n_chantier)
+);
+
+CREATE TABLE droitsconduite(
+    n_conducteur VARCHAR(4), 
+    type_vehicule VARCHAR(20),
+    CONSTRAINT pk_droits PRIMARY KEY(n_conducteur,type_vehicule),
+    CONSTRAINT fk_droits_employe FOREIGN KEY(n_conducteur) REFERENCES employe(n_emp)
+);
+
+ALTER TABLE visite ADD(
+    temps_trajet AS (kilometres/40) VIRTUAL
+);
+
+DESC VISITE;
+DESC chantier;
+DESC vehicule;
+DESC droitsconduite;
+DESC chantierinterdits;
+DESC employe;
+
+-------------MAJCHANTIER----------
+-- on affecte le nombre de place disponible pour chasue vehicule
+
+UPDATE vehicule SET capacite=6 WHERE type_vehicule=0;
+
+UPDATE vehicule SET capacite=1 WHERE type_vehicule=1;
+
+UPDATE vehicule SET capacite=3 WHERE type_vehicule=2;
+
+--chantier inaccessible pour une camionnette et pour une moto
+
+INSERT INTO chantierinterdits VALUES  ('CH4','1');
+INSERT INTO chantierinterdits VALUES  ('CH2','0');
+
+--déclarations des autorisations de véhicules au conducteur
+
+INSERT INTO droitsconduite VALUES ('E1','0');
+INSERT INTO droitsconduite VALUES ('E1','2');
+
+INSERT INTO droitsconduite VALUES ('E2','0');
+INSERT INTO droitsconduite VALUES ('E2','2');
+
+INSERT INTO droitsconduite VALUES ('E3','0');
+INSERT INTO droitsconduite VALUES ('E3','1');
+INSERT INTO droitsconduite VALUES ('E3','2');
+
+INSERT INTO droitsconduite VALUES ('E10','2');
+
+INSERT INTO droitsconduite VALUES ('E5','2');
+
+

@@ -1,0 +1,91 @@
+DELETE FROM transporter;
+DELETE FROM visite;
+DELETE FROM vehicule;
+DELETE FROM  chantier;
+DELETE FROM  employe;
+
+INSERT INTO employe VALUES('E1','Victor','OS');
+INSERT INTO employe VALUES('E2','Henri','OS');
+INSERT INTO employe VALUES('E3','Michel','Assistant');
+INSERT INTO employe VALUES('E4','Pierre','Assistant');
+INSERT INTO employe VALUES('E5','Paul','Architecte');
+INSERT INTO employe VALUES('E6','Fred','Ingénieur');
+INSERT INTO employe VALUES('E7','Alain','Ingénieur');
+INSERT INTO employe VALUES('E8','Jack','Ingénieur');
+INSERT INTO employe VALUES('E9','Fred','Ingénieur');
+INSERT INTO employe VALUES('E10','Christian','OS');
+
+INSERT INTO chantier VALUES('CH1','IUT','Blagnac');
+INSERT INTO chantier VALUES('CH2','UPS','Toulouse');
+INSERT INTO chantier VALUES('CH3','UTM','Toulouse');
+INSERT INTO chantier VALUES('CH4','INSA','Castanet');
+
+INSERT INTO vehicule VALUES('V1','0',15000);
+INSERT INTO vehicule VALUES('V2','2',20000);
+INSERT INTO vehicule VALUES('V3','1',17000);
+INSERT INTO vehicule VALUES('V4','2',65000);
+INSERT INTO vehicule VALUES('V5','2',70000);
+
+
+--01/04/2008
+
+INSERT INTO visite (n_chantier,n_vehicule,date_jour,kilometres,n_conducteur)VALUES('CH1','V1',to_date('1-04-2008','dd-mm-yyyy'),100,'E1');
+INSERT INTO visite (n_chantier,n_vehicule,date_jour,kilometres,n_conducteur)VALUES('CH2','V1',to_date('1-04-2008','dd-mm-yyyy'),50 ,'E1');
+INSERT INTO visite (n_chantier,n_vehicule,date_jour,kilometres,n_conducteur)VALUES('CH3','V1',to_date('1-04-2008','dd-mm-yyyy'),75 ,'E1');
+
+INSERT INTO visite (n_chantier,n_vehicule,date_jour,kilometres,n_conducteur)VALUES('CH4','V2',to_date('1-04-2008','dd-mm-yyyy'),10, 'E2');
+INSERT INTO visite (n_chantier,n_vehicule,date_jour,kilometres,n_conducteur)VALUES('CH2','V2',to_date('1-04-2008','dd-mm-yyyy'),15 ,'E2');
+
+
+--02/04/2008
+
+INSERT INTO visite (n_chantier,n_vehicule,date_jour,kilometres,n_conducteur)VALUES('CH1','V2',to_date('02-04-2008','dd-mm-yyyy'),80,'E10');
+INSERT INTO visite (n_chantier,n_vehicule,date_jour,kilometres,n_conducteur)VALUES('CH2','V2',to_date('02-04-2008','dd-mm-yyyy'),30 ,'E10');
+INSERT INTO visite (n_chantier,n_vehicule,date_jour,kilometres,n_conducteur)VALUES('CH4','V2',to_date('02-04-2008','dd-mm-yyyy'),25 ,'E10');
+
+INSERT INTO visite (n_chantier,n_vehicule,date_jour,kilometres,n_conducteur)VALUES('CH4','V1',to_date('02-04-2008','dd-mm-yyyy'),20, 'E2');
+INSERT INTO visite (n_chantier,n_vehicule,date_jour,kilometres,n_conducteur)VALUES('CH2','V1',to_date('02-04-2008','dd-mm-yyyy'),35 ,'E2');
+
+INSERT INTO visite (n_chantier,n_vehicule,date_jour,kilometres,n_conducteur)VALUES('CH3','V4',to_date('02-04-2008','dd-mm-yyyy'),5 ,'E5');
+
+--03/04/2008
+
+INSERT INTO visite (n_chantier,n_vehicule,date_jour,kilometres,n_conducteur)VALUES('CH3','V2',to_date('03-04-2008','dd-mm-yyyy'),5 ,'E1');
+
+INSERT INTO visite (n_chantier,n_vehicule,date_jour,kilometres,n_conducteur)VALUES('CH4','V5',to_date('03-04-2008','dd-mm-yyyy'),20, 'E3');
+INSERT INTO visite (n_chantier,n_vehicule,date_jour,kilometres,n_conducteur)VALUES('CH2','V5',to_date('03-04-2008','dd-mm-yyyy'),35 ,'E3');
+
+---------Transports
+
+--01/04/2008
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH1','V1',to_date('1-04-2008','dd-mm-yyyy'),'E7');
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH1','V1',to_date('1-04-2008','dd-mm-yyyy'),'E8');
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH2','V1',to_date('1-04-2008','dd-mm-yyyy'),'E7');
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH3','V1',to_date('1-04-2008','dd-mm-yyyy'),'E8');
+
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH4','V2',to_date('1-04-2008','dd-mm-yyyy'),'E9');
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH2','V2',to_date('1-04-2008','dd-mm-yyyy'),'E9');
+
+--02/04/2008
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH1','V2',to_date('02-04-2008','dd-mm-yyyy'),'E1');
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH1','V2',to_date('02-04-2008','dd-mm-yyyy'),'E2');
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH1','V2',to_date('02-04-2008','dd-mm-yyyy'),'E3');
+
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH2','V2',to_date('02-04-2008','dd-mm-yyyy'),'E1');
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH2','V2',to_date('02-04-2008','dd-mm-yyyy'),'E2');
+
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH4','V2',to_date('02-04-2008','dd-mm-yyyy'),'E3');
+
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH4','V1',to_date('02-04-2008','dd-mm-yyyy'),'E8');
+
+
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH2','V1',to_date('02-04-2008','dd-mm-yyyy'),'E7');
+
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH3','V4',to_date('02-04-2008','dd-mm-yyyy'),'E9');
+
+--03/04/2008
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH3','V2',to_date('03-04-2008','dd-mm-yyyy'),'E2');
+
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH4','V5',to_date('03-04-2008','dd-mm-yyyy'),'E7');
+
+INSERT INTO transporter (n_chantier,n_vehicule,date_jour,n_transporte) VALUES ('CH2','V5',to_date('03-04-2008','dd-mm-yyyy'),'E7');
